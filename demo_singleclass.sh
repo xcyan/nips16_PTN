@@ -1,0 +1,2 @@
+mkdir ./models
+th scripts/
