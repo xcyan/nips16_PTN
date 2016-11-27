@@ -1,3 +1,4 @@
+-- code adapted from https://github.com/soumith/dcgan.torch.git
 local Threads = require 'threads'
 Threads.serialization('threads.sharedserialize')
 

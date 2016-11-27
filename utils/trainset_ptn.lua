@@ -1,3 +1,4 @@
+-- code adapted from https://github.com/soumith/dcgan.torch.git
 require 'image'
 require 'mattorch'
 dir = require 'pl.dir'

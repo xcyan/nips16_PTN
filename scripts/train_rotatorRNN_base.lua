@@ -1,3 +1,4 @@
+-- torch reimplementation of deepRotator: https://github.com/jimeiyang/deepRotator.git
 require 'torch'
 require 'nn'
 require 'cunn'
