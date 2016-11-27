@@ -59,8 +59,8 @@ function data.new(n, dataset_name, opt_)
 end
 
 function data._getFromThreads()
-  assert(opt.batchsize, 'opt.batchsize not found')
-  return dataLoader:sample(opt.batchsize)
+  assert(opt.batch_size, 'opt.batch_size not found')
+  return dataLoader:sample(opt.batch_size)
 end
 
 function data._pushResult(...)

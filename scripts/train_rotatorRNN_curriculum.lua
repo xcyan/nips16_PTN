@@ -1,7 +1,7 @@
 require 'torch'
 require 'nn'
 require 'cunn'
-require 'cudnn'
+--require 'cudnn'
 require 'nngraph'
 require 'optim'
 require 'image'
@@ -12,10 +12,10 @@ optim_utils = require 'utils.adam_v2'
 opt = lapp[[
   --save_every          (default 20)
   --print_every         (default 1)
-  --data_root           (default '/home/xcyan/datasets/ShapeNetCore')
-  --data_id_path        (default '/home/xcyan/datasets/ShapeNetCore/shapenetcore_ids')
-  --data_view_path      (default '/home/xcyan/datasets/ShapeNetCore/shapenetcore_viewdata')
-  --dataset             (default 'folder_shapenet_rotator_curriculum')
+  --data_root           (default 'data')
+  --data_id_path        (default 'data/shapenetcore_ids')
+  --data_view_path      (default 'data/shapenetcore_viewdata')
+  --dataset             (default 'dataset_rotator_curriculum')
   --gpu                 (default 0)
   --use_cudnn           (default 1)
   --nz                  (default 512)
@@ -24,15 +24,15 @@ opt = lapp[[
   --nThreads            (default 4)
   --niter               (default 40)
   --display             (default 1)
-  --checkpoint_dir      (default '../shapenet_models/')
+  --checkpoint_dir      (default 'models/')
   --lambda              (default 10)
   --kstep               (default 2)
-  --batchsize           (default 32)
+  --batch_size           (default 32)
   --adam                (default 1)
-  --arch_name           (default 'rotatorRNN1_64')
+  --arch_name           (default 'arch_rotatorRNN')
   --weight_decay        (default 0.001)
   --exp_list            (default 'singleclass')
-  --loadSize            (default 64)
+  --load_size            (default 64)
 ]]
 
 opt.ntrain = math.huge
@@ -53,9 +53,11 @@ torch.setnumthreads(1)
 torch.setdefaulttensortype('torch.FloatTensor')
 
 -- create data loader
-local DataLoader = paths.dofile('utils/data.lua')
-local data = DataLoader.new(opt.nThreads, opt.dataset, opt)
-print("Dataset: " .. opt.dataset, "trainSize: ", data:trainSize(), "valSize: ", data:valSize())
+local TrainLoader = require('utils/data.lua')
+local ValLoader = require('utils/data_val.lua')
+local data = TrainLoader.new(opt.nThreads, opt.dataset, opt)
+local data_val = ValLoader.new(opt.nThreads, opt.dataset, opt)
+print("Dataset: " .. opt.dataset, "train_size: ", data:size(), "val_size: ", data_val:size())
 
 ------------------------------------------------
 
@@ -126,7 +128,7 @@ elseif opt.exp_list == 'multiclass' then
 end
 
 opt.model_name = string.format('%s_%s_nv%d_adam%d_bs%d_nz%d_wd%g_lbg%g_ks%d',
-  opt.arch_name, opt.exp_list, opt.nview, opt.adam, opt.batchsize, opt.nz,
+  opt.arch_name, opt.exp_list, opt.nview, opt.adam, opt.batch_size, opt.nz,
   opt.weight_decay, opt.lambda, opt.kstep)
 
 opt.model_path = opt.checkpoint_dir .. opt.model_name
@@ -148,13 +150,11 @@ for i = opt.niter, 1, -opt.save_every do
 end
 
 -- build nngraph
---if prev_iter > 0 then
-  encoder = loader.encoder
-  actor = loader.actor
-  mixer = loader.mixer
-  decoder_msk = loader.decoder_msk
-  decoder_im = loader.decoder_im
---end
+encoder = loader.encoder
+actor = loader.actor
+mixer = loader.mixer
+decoder_msk = loader.decoder_msk
+decoder_im = loader.decoder_im
 
 -- criterion
 local criterion_im = nn.MSECriterion()
@@ -191,17 +191,17 @@ config = getAdamParams(opt)
 print(config)
 --------------------------------------------------------
 
-local batch_im_in = torch.Tensor(opt.batchsize, 3, opt.loadSize, opt.loadSize)
-local batch_rot = torch.Tensor(opt.batchsize, opt.na):zero()
+local batch_im_in = torch.Tensor(opt.batch_size, 3, opt.load_size, opt.load_size)
+local batch_rot = torch.Tensor(opt.batch_size, opt.na):zero()
 local batch_outputs = {}
 for k = 1, opt.kstep do 
-  batch_outputs[2*k-1] = torch.Tensor(opt.batchsize, 3, opt.loadSize, opt.loadSize)
-  batch_outputs[2*k] = torch.Tensor(opt.batchsize, 1, opt.loadSize, opt.loadSize)
+  batch_outputs[2*k-1] = torch.Tensor(opt.batch_size, 3, opt.load_size, opt.load_size)
+  batch_outputs[2*k] = torch.Tensor(opt.batch_size, 1, opt.load_size, opt.load_size)
 end
 local preds = {}
 for k = 1, opt.kstep do
-  preds[2*k-1] = torch.Tensor(opt.batchsize, 3, opt.loadSize, opt.loadSize)
-  preds[2*k] = torch.Tensor(opt.batchsize, 1, opt.loadSize, opt.loadSize)
+  preds[2*k-1] = torch.Tensor(opt.batch_size, 3, opt.load_size, opt.load_size)
+  preds[2*k] = torch.Tensor(opt.batch_size, 1, opt.load_size, opt.load_size)
 end
 
 local errIM, errMSK
@@ -230,7 +230,7 @@ params, grads = model_utils.combine_all_parameters(encoder,
 
 clone_actor = model_utils.clone_many_times(actor, opt.kstep)
 
-nelem = opt.batchsize * opt.kstep
+nelem = opt.batch_size * opt.kstep
 -------------------------------------------
 local opfunc = function(x)
   collectgarbage()
@@ -242,7 +242,7 @@ local opfunc = function(x)
 
   -- train
   data_tm:reset(); data_tm:resume()
-  cur_im_in, cur_outputs, cur_rot, _ = data:getTrainBatch() 
+  cur_im_in, cur_outputs, cur_rot, _ = data:getBatch() 
   data_tm:stop()
 
   batch_im_in:copy(cur_im_in:mul(2):add(-1))
@@ -303,7 +303,7 @@ local feedforward = function(x)
   
   -- val
   data_tm:reset(); data_tm:resume()
-  cur_im_in, cur_outputs, cur_rot, _ = data:getValBatch() -- TODO
+  cur_im_in, cur_outputs, cur_rot, _ = data_val:getBatch()
   data_tm:stop()
 
   batch_im_in:copy(cur_im_in:mul(2):add(-1))
@@ -384,6 +384,7 @@ for epoch = prev_iter + 1, opt.niter do
       local res = preds[k*2][i]:float():clone()
       res = torch.squeeze(res)
       res = res:repeatTensor(3, 1, 1)
+      res:mul(-1):add(1)
       to_plot[#to_plot+1] = res:clone()
 
       local res = preds[k*2-1][i]:float():clone()

@@ -1,7 +1,7 @@
 require 'torch'
 require 'nn'
 require 'cunn'
-require 'cudnn'
+--require 'cudnn'
 require 'nngraph'
 require 'optim'
 require 'image'
@@ -10,18 +10,18 @@ model_utils = require 'utils.model_utils'
 optim_utils = require 'utils.adam_v2'
 
 opt = lapp[[
-  --save_every        (default 20)
+  --save_every        (default 40)
   --print_every       (default 1)
-  --data_root         (default 'data/ShapeNetCore')
-  --data_id_path      (default 'data/ShapeNetCore/shapenetcore_ids')
-  --data_view_path    (default 'data/ShapeNetCore/shapenetcore_viewdata')
+  --data_root         (default 'data')
+  --data_id_path      (default 'data/shapenetcore_ids')
+  --data_view_path    (default 'data/shapenetcore_viewdata')
   --dataset           (default 'dataset_rotatorRNN_base')
   --gpu               (default 0)
   --nz                (default 512)
   --na                (default 3)
   --nview             (default 24)
   --nThreads          (default 4)
-  --niter             (default 100)
+  --niter             (default 160)
   --display           (default 1)
   --checkpoint_dir    (default 'models/')
   --lambda            (default 10)
@@ -52,9 +52,9 @@ torch.setnumthreads(1)
 torch.setdefaulttensortype('torch.FloatTensor')
 
 -- create data loader
-local TrainLoader = paths.dofile('utils/data.lua')
+local TrainLoader = require 'utils/data.lua'
+local ValLoader = require 'utils/data_val.lua'
 local data = TrainLoader.new(opt.nThreads, opt.dataset, opt)
-local ValLoader = paths.dofile('utils/data_val.lua')
 local data_val = ValLoader.new(opt.nThreads, opt.dataset, opt)
 
 print("dataset: " .. opt.dataset, "train size: ", data:size(), "val size: ", data_val:size())
@@ -84,7 +84,7 @@ opt.model_name = string.format('%s_%s_nv%d_adam%d_bs%d_nz%d_wd%g_lbg%g_ks%d',
   opt.weight_decay, opt.lambda, opt.kstep)
 
 -- initialize parameters
-init_models = dofile('prototxt/' .. opt.arch_name .. '.lua')
+init_models = dofile('scripts/' .. opt.arch_name .. '.lua')
 encoder, actor, mixer, decoder_msk, decoder_im = init_models.create(opt)
 encoder:apply(weights_init)
 actor:apply(weights_init)
@@ -198,7 +198,7 @@ local opfunc = function(x)
 
   -- train
   data_tm:reset(); data_tm:resume()
-  cur_im_in, cur_outputs, cur_rot, _ = data:getBatch() --TODO
+  cur_im_in, cur_outputs, cur_rot, _ = data:getBatch() 
   data_tm:stop()
 
   batch_im_in:copy(cur_im_in:mul(2):add(-1))
@@ -238,7 +238,7 @@ local feedforward = function(x)
   
   -- val
   data_tm:reset(); data_tm:resume()
-  cur_im_in, cur_outputs, cur_rot, _ = data_val:getBatch() --TODO
+  cur_im_in, cur_outputs, cur_rot, _ = data_val:getBatch() 
   data_tm:stop()
 
   batch_im_in:copy(cur_im_in:mul(2):add(-1))
@@ -301,6 +301,7 @@ for epoch = prev_iter + 1, opt.niter do
       local res = preds[2*k][i]:float()
       res = torch.squeeze(res)
       res = res:repeatTensor(3, 1, 1)
+      res:mul(-1):add(1)
       to_plot[#to_plot+1] = res:clone()
 
       local res = preds[2*k-1][i]:float()
