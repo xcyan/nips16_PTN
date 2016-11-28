@@ -11,6 +11,10 @@ PTN requires or works with
 
 ## Installing Dependency
 * Install [Torch](http://torch.ch)
+* Install [Torch Perspective Transformer Layer](https://github.com/xcyan/ptnbhwd.git)
+```
+./install_ptnbhwd.sh
+```
 
 ## Dataset Downloading
 * Please run the script to download the pre-processed dataset (including rendered 2D views and 3D volumes):
