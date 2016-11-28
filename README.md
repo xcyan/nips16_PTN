@@ -19,9 +19,21 @@ PTN requires or works with
 ```
 
 ## Training (single-class experiment)
-* If you want to train the PTN on single-class, please run the script
+* If you want to pre-train the view-point indepedent image encoder on single-class, please run the script
 ```
-./demo_singleclasss.sh
+./demo_pretrain_singleclasss.sh
+```
+* If you want to train PTN-Proj (unsupervised) on single-class based on pre-trained encoder, please run the script
+```
+./demo_train_ptn_proj_singleclass.sh
+```
+* If you want to train PTN-Comb (3D supervision) on single-class based on pre-trained encoder, please run the script
+```
+./demo_train_ptn_comb_singleclass.sh
+```
+* If you want to train CNN-Vol (3D supervision) on single-class based on pre-trained encoder, please run the script
+```
+./demo_train_cnn_vol_singleclass.sh
 ```
 
 ## Testing using Pre-trained Model (single-class experiment)
