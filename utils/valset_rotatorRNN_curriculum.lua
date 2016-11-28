@@ -8,7 +8,7 @@ local categories = {}
 local files = {}
 local size = 0
 
-for cat in io.lines(opt.data_root .. '/exp_' .. opt.exp_list .. '.txt') do
+for cat in io.lines('exp_' .. opt.exp_list .. '.txt') do
   print(cat)
   categories[#categories + 1] = cat
   local dirpath = opt.data_root .. '/' .. cat
@@ -32,7 +32,7 @@ local function loadImage(path)
   return input
 end
 
-function dataLoader:sample(flag_split, quantity)
+function dataLoader:sample(quantity)
   local class_idx_batch = torch.Tensor(quantity)
   for n = 1, quantity do
     class_idx_batch[n] = torch.randperm(#categories)[1]

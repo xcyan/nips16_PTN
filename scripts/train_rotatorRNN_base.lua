@@ -27,7 +27,7 @@ opt = lapp[[
   --checkpoint_dir    (default 'models/')
   --lambda            (default 10)
   --kstep             (default 1)
-  --batch_size        (default 100)
+  --batch_size        (default 32)
   --adam              (default 1)
   --arch_name         (default 'arch_rotatorRNN')
   --weight_decay      (default 0.001)

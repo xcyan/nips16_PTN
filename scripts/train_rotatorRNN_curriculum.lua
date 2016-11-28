@@ -16,7 +16,7 @@ opt = lapp[[
   --data_root           (default 'data')
   --data_id_path        (default 'data/shapenetcore_ids')
   --data_view_path      (default 'data/shapenetcore_viewdata')
-  --dataset             (default 'dataset_rotator_curriculum')
+  --dataset             (default 'dataset_rotatorRNN_curriculum')
   --gpu                 (default 0)
   --use_cudnn           (default 1)
   --nz                  (default 512)
@@ -77,24 +77,24 @@ if opt.exp_list == 'singleclass' then
     loader = torch.load(opt.checkpoint_dir .. opt.basemodel_name .. string.format('/net-epoch-%d.t7', opt.basemodel_epoch))
   elseif opt.kstep == 8 then
     opt.basemodel_name = string.format('%s_%s_nv%d_adam%d_bs%d_nz%d_wd%g_lbg%g_ks%d',
-      opt.arch_name, opt.exp_list, opt.nview, 2, 8, opt.nz, 
+      opt.arch_name, opt.exp_list, opt.nview, 2, 32, opt.nz, 
       opt.weight_decay, opt.lambda, 4)
     opt.basemodel_epoch = 40
     loader = torch.load(opt.checkpoint_dir .. opt.basemodel_name .. string.format('/net-epoch-%d.t7', opt.basemodel_epoch)) 
   elseif opt.kstep == 12 then
     opt.basemodel_name = string.format('%s_%s_nv%d_adam%d_bs%d_nz%d_wd%g_lbg%g_ks%d',
-      opt.arch_name, opt.exp_list, opt.nview, 3, 4, opt.nz, 
+      opt.arch_name, opt.exp_list, opt.nview, 2, 32, opt.nz, 
       opt.weight_decay, opt.lambda, 8)
-    opt.basemodel_epoch = 40
+    opt.basemodel_epoch = 20
     loader = torch.load(opt.checkpoint_dir .. opt.basemodel_name .. string.format('/net-epoch-%d.t7', opt.basemodel_epoch))     
   elseif opt.kstep == 16 then
     opt.basemodel_name = string.format('%s_%s_nv%d_adam%d_bs%d_nz%d_wd%g_lbg%g_ks%d',
-      opt.arch_name, opt.exp_list, opt.nview, 3, 3, opt.nz, 
+      opt.arch_name, opt.exp_list, opt.nview, 2, 16, opt.nz, 
       opt.weight_decay, opt.lambda, 12)
-    opt.basemodel_epoch = 40
+    opt.basemodel_epoch = 20
     loader = torch.load(opt.checkpoint_dir .. opt.basemodel_name .. string.format('/net-epoch-%d.t7', opt.basemodel_epoch)) 
   end
-elseif opt.exp_list == 'multiclass' then
+--[[elseif opt.exp_list == 'multiclass' then
   if opt.kstep == 2 then
     opt.basemodel_name = string.format('%s_%s_nv%d_adam%d_bs%d_nz%d_wd%g_lbg%g_ks%d',
       opt.arch_name, opt.exp_list, opt.nview, 1, 32, opt.nz, 
@@ -125,7 +125,7 @@ elseif opt.exp_list == 'multiclass' then
       opt.weight_decay, opt.lambda, 12)
     opt.basemodel_epoch = 40
     loader = torch.load(opt.checkpoint_dir .. opt.basemodel_name .. string.format('/net-epoch-%d.t7', opt.basemodel_epoch))
-  end
+  end]]
 end
 
 opt.model_name = string.format('%s_%s_nv%d_adam%d_bs%d_nz%d_wd%g_lbg%g_ks%d',
