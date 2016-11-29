@@ -26,7 +26,7 @@ PTN requires or works with
 ## Training (single-class experiment)
 * If you want to pre-train the view-point indepedent image encoder on single-class, please run the script
 ```
-./demo_pretrain_singleclasss.sh
+./demo_pretrain_singleclass.sh
 ```
 * If you want to train PTN-Proj (unsupervised) on single-class based on pre-trained encoder, please run the script
 ```
