@@ -19,6 +19,8 @@ function data.new(n, dataset_name, opt_)
     donkey_file = 'trainset_rotatorRNN_base.lua'
   elseif dataset_name == 'dataset_rotatorRNN_curriculum' then
     donkey_file = 'trainset_rotatorRNN_curriculum.lua'
+  elseif dataset_name == 'dataset_ptn' then
+    donkey_file = 'trainset_ptn.lua'
   end
 
   if n > 0 then

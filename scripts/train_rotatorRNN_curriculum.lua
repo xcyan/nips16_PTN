@@ -349,13 +349,13 @@ for epoch = prev_iter + 1, opt.niter do
   for k = 1, opt.kstep do
     clone_actor[k]:training()
   end
-  for i = 1, math.min(data:trainSize() / 5, opt.ntrain) do
+  for i = 1, math.min(data:size() / 5, opt.ntrain) do
     tm:reset()
     optim_utils.adam_v2(opfunc, params, config, state)
     counter = counter + 1
     print(string.format('Epoch: [%d][%8d / %8d]\t Time: %.3f DataTime: %.3f  '
       .. ' Err_Im: %.4f, Err_Msk: %.4f', epoch, i-1,
-      math.min(data:trainSize() / 5, opt.ntrain),
+      math.min(data:size() / 5, opt.ntrain),
       tm:time().real, data_tm:time().real, 
       errIM and errIM or -1, errMSK and errMSK or -1))
   end

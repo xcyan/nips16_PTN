@@ -14,7 +14,7 @@ for cat in io.lines('exp_' .. opt.exp_list .. '.txt') do
   categories[#categories + 1] = cat
   local dirpath = opt.data_root .. '/' .. cat
 
-  local list = opt.data_id_path .. '/' .. cat .. '_trainids.txt'
+  local list = opt.data_id_path .. '/' .. cat .. '_valids.txt'
   cls_files = {}
   for line in io.lines(list) do
     cls_files[#cls_files + 1] = line
