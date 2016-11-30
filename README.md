@@ -26,19 +26,20 @@ The following command installs the Perspective Transformer Layer:
 ```
 
 ## Training (single-class experiment)
-* If you want to pre-train the view-point indepedent image encoder on single-class, please run the script
+* If you want to pre-train the view-point indepedent image encoder on single-class, please run the following command.
+Note that the pre-training could take a few days on a single TITAN X GPU.
 ```
 ./demo_pretrain_singleclass.sh
 ```
-* If you want to train PTN-Proj (unsupervised) on single-class based on pre-trained encoder, please run the script
+* If you want to train PTN-Proj (unsupervised) on single-class based on pre-trained encoder, please run the command.
 ```
 ./demo_train_ptn_proj_singleclass.sh
 ```
-* If you want to train PTN-Comb (3D supervision) on single-class based on pre-trained encoder, please run the script
+* If you want to train PTN-Comb (3D supervision) on single-class based on pre-trained encoder, please run the command.
 ```
 ./demo_train_ptn_comb_singleclass.sh
 ```
-* If you want to train CNN-Vol (3D supervision) on single-class based on pre-trained encoder, please run the script
+* If you want to train CNN-Vol (3D supervision) on single-class based on pre-trained encoder, please run the command.
 ```
 ./demo_train_cnn_vol_singleclass.sh
 ```
