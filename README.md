@@ -12,7 +12,8 @@ PTN requires or works with
 ## Installing Dependency
 * Install [Torch](http://torch.ch)
 * Install [Mattorch](https://github.com/clementfarabet/lua---mattorch)
-* Install [Perspective Transformer Layer](https://github.com/xcyan/ptnbhwd.git)
+* Install [Perspective Transformer Layer](https://github.com/xcyan/ptnbhwd.git):
+The following command installs our CUDA implementation of Perspective Transformer Layer.
 ```
 ./install_ptnbhwd.sh
 ```
