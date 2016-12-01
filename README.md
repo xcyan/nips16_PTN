@@ -20,7 +20,7 @@ The following command installs the Perspective Transformer Layer:
 ```
 
 ## Dataset Downloading
-* Please run the script to download the pre-processed dataset (including rendered 2D views and 3D volumes):
+* Please run the command to download the pre-processed dataset (including rendered 2D views and 3D volumes):
 ```
 ./prepare_data.sh
 ```
