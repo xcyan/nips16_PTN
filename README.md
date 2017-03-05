@@ -2,6 +2,8 @@
 
 This is the code for NIPS 2016 paper [Perspective Transformer Nets: Learning Single-View 3D Object Reconstruction without 3D Supervision](https://papers.nips.cc/paper/6206-perspective-transformer-nets-learning-single-view-3d-object-reconstruction-without-3d-supervision.pdf) by Xinchen Yan, Jimei Yang, Ersin Yumer, Yijie Guo and Honglak Lee
 
+<iframe src="https://app.box.com/embed/preview/e9atbh9mjt9mvm27i74lhsp0b9q97rxn?theme=dark" width="500" height="400" frameborder="0" allowfullscreen webkitallowfullscreen msallowfullscreen></iframe>
+
 Please follow the instructions to run the code.
 
 ## Requirements
@@ -30,7 +32,7 @@ Encoder-Decoder: [DeepRotator-RNN16](https://umich.box.com/shared/static/6mci62a
 
 Encoder-Volume Generator: [PTN-Proj](TBD)
 
-Encoder-Volume Generator: [PTN-Comb](TBD)
+Encoder-Volume Generator: [PTN-Comb](https://umich.box.com/s/0f3mtxxrjtl5d264e9g69k6b9otfj9od)
 
 Encoder-Volume Generator: [CNN-Vol](TBD)
 
