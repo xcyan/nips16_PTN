@@ -27,8 +27,11 @@ The following command installs the Perspective Transformer Layer:
 
 ## Pre-trained Models Downloading (single-class experiment)
 Encoder-Decoder: [DeepRotator-RNN16](https://umich.box.com/shared/static/6mci62a2f7qri1oqe1idzr7qvrmvltsg.t7)
+
 Encoder-Volume Generator: [PTN-Proj](TBD)
+
 Encoder-Volume Generator: [PTN-Comb](TBD)
+
 Encoder-Volume Generator: [CNN-Vol](TBD)
 
 ## Training (single-class experiment)
