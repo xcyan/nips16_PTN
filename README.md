@@ -25,6 +25,12 @@ The following command installs the Perspective Transformer Layer:
 ./prepare_data.sh
 ```
 
+## Pre-trained Models Downloading (single-class experiment)
+Encoder-Decoder: [DeepRotator-RNN16](https://umich.box.com/shared/static/6mci62a2f7qri1oqe1idzr7qvrmvltsg.t7)
+Encoder-Volume Generator: [PTN-Proj](TBD)
+Encoder-Volume Generator: [PTN-Comb](TBD)
+Encoder-Volume Generator: [CNN-Vol](TBD)
+
 ## Training (single-class experiment)
 * If you want to pre-train the view-point indepedent image encoder on single-class, please run the following command.
 Note that the pre-training could take a few days on a single TITAN X GPU.
