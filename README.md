@@ -28,7 +28,7 @@ The following command installs the Perspective Transformer Layer:
 ```
 
 ## Pre-trained Models Downloading (single-class experiment)
-* Please run the command to download the pre-trained model:
+* Please run the command to download the pre-trained models:
 ```
 ./download_models.sh
 ```
@@ -59,7 +59,7 @@ Note that the pre-training could take a few days on a single TITAN X GPU.
 ./demo_train_cnn_vol_singleclass.sh
 ```
 
-## Testing using Pre-trained Model (single-class experiment)
+## Testing using Pre-trained Models (single-class experiment)
 TBD
 
 ## Citation
