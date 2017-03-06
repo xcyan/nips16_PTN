@@ -28,17 +28,19 @@ The following command installs the Perspective Transformer Layer:
 ```
 
 ## Pre-trained Models Downloading (single-class experiment)
-* Please run the command to download the pre-trained models:
+
+DeepRotator-RNN16: deeprotator_rnn16.t7
+
+PTN-Proj: ptn_proj.t7
+
+PTN-Comb: ptn_comb.t7
+
+CNN-Vol: cnn_vol.t7
+
+* The following command downloads the pre-trained models:
 ```
 ./download_models.sh
 ```
-Encoder-Decoder: [DeepRotator-RNN16](https://umich.box.com/shared/static/6mci62a2f7qri1oqe1idzr7qvrmvltsg.t7)
-
-Encoder-Volume Generator: [PTN-Proj](https://umich.box.com/shared/static/x8z48x98cqc38plqqp2n9cef1s6k01o0.t7)
-
-Encoder-Volume Generator: [PTN-Comb](https://umich.box.com/shared/static/0f3mtxxrjtl5d264e9g69k6b9otfj9od.t7)
-
-Encoder-Volume Generator: [CNN-Vol](https://umich.box.com/shared/static/dfy6yqx4v9a5cq97left17iorr14arjo.t7)
 
 ## Training (single-class experiment)
 * If you want to pre-train the view-point indepedent image encoder on single-class, please run the following command.
