@@ -34,7 +34,7 @@ The following command installs the Perspective Transformer Layer:
 ```
 Encoder-Decoder: [DeepRotator-RNN16](https://umich.box.com/shared/static/6mci62a2f7qri1oqe1idzr7qvrmvltsg.t7)
 
-Encoder-Volume Generator: [PTN-Proj](TBD)
+Encoder-Volume Generator: [PTN-Proj](https://umich.box.com/shared/static/x8z48x98cqc38plqqp2n9cef1s6k01o0.t7)
 
 Encoder-Volume Generator: [PTN-Comb](https://umich.box.com/shared/static/0f3mtxxrjtl5d264e9g69k6b9otfj9od.t7)
 
