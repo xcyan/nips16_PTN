@@ -28,17 +28,24 @@ The following command installs the Perspective Transformer Layer:
 ```
 
 ## Pre-trained Models Downloading (single-class experiment)
-* Please run the command to download the pre-trained models:
+
+PTN-Proj: ptn_proj.t7
+
+PTN-Comb: ptn_comb.t7
+
+CNN-Vol: cnn_vol.t7
+
+* The following command downloads the pre-trained models:
 ```
 ./download_models.sh
 ```
-Encoder-Decoder: [DeepRotator-RNN16](https://umich.box.com/shared/static/6mci62a2f7qri1oqe1idzr7qvrmvltsg.t7)
 
-Encoder-Volume Generator: [PTN-Proj](https://umich.box.com/shared/static/x8z48x98cqc38plqqp2n9cef1s6k01o0.t7)
+## Testing using Pre-trained Models (single-class experiment)
 
-Encoder-Volume Generator: [PTN-Comb](https://umich.box.com/shared/static/0f3mtxxrjtl5d264e9g69k6b9otfj9od.t7)
-
-Encoder-Volume Generator: [CNN-Vol](https://umich.box.com/shared/static/dfy6yqx4v9a5cq97left17iorr14arjo.t7)
+* The following command evaluates the pre-trained models:
+```
+./eval_models.sh
+```
 
 ## Training (single-class experiment)
 * If you want to pre-train the view-point indepedent image encoder on single-class, please run the following command.
@@ -59,8 +66,6 @@ Note that the pre-training could take a few days on a single TITAN X GPU.
 ./demo_train_cnn_vol_singleclass.sh
 ```
 
-## Testing using Pre-trained Models (single-class experiment)
-TBD
 
 ## Citation
 
