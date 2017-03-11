@@ -29,8 +29,6 @@ The following command installs the Perspective Transformer Layer:
 
 ## Pre-trained Models Downloading (single-class experiment)
 
-DeepRotator-RNN16: deeprotator_rnn16.t7
-
 PTN-Proj: ptn_proj.t7
 
 PTN-Comb: ptn_comb.t7
@@ -40,6 +38,13 @@ CNN-Vol: cnn_vol.t7
 * The following command downloads the pre-trained models:
 ```
 ./download_models.sh
+```
+
+## Testing using Pre-trained Models (single-class experiment)
+
+* The following command evaluates the pre-trained models:
+```
+./eval_models.sh
 ```
 
 ## Training (single-class experiment)
@@ -61,8 +66,6 @@ Note that the pre-training could take a few days on a single TITAN X GPU.
 ./demo_train_cnn_vol_singleclass.sh
 ```
 
-## Testing using Pre-trained Models (single-class experiment)
-TBD
 
 ## Citation
 
