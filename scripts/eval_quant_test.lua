@@ -24,7 +24,7 @@ opt = lapp[[
   --nz                (default 512)
   --na                (default 3)
   --nview             (default 24)
-  --nThreads          (default 4)
+  --nThreads          (default 1)
   --niter             (default 100)
   --display           (default 1)
   --checkpoint_dir    (default 'models/')

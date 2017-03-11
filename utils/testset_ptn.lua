@@ -4,6 +4,7 @@ require 'mattorch'
 dir = require 'pl.dir'
 
 dataLoader = {}
+dataLoader.counter = 0
 
 local categories = {}
 local files = {}
@@ -51,7 +52,7 @@ function dataLoader:sample(quantity)
 
     cls_files = files[class_idx_batch[n]]
 
-    local file_idx = torch.randperm(#cls_files)[1]
+    local file_idx = self.counter + n
 
     local obj_list = opt.data_view_path .. '/' .. cls_files[file_idx]
     for k = 1, opt.nview do
@@ -64,6 +65,8 @@ function dataLoader:sample(quantity)
     local vox_instance = vox_loader.voxel
     batch_vox[n]:copy(vox_instance)
   end
+
+  self.counter = self.counter + quantity
 
   collectgarbage()
 
