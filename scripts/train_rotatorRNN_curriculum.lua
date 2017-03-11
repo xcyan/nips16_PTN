@@ -2,7 +2,7 @@
 require 'torch'
 require 'nn'
 require 'cunn'
---require 'cudnn'
+-- require 'cudnn'
 require 'nngraph'
 require 'optim'
 require 'image'
