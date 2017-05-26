@@ -26,6 +26,7 @@ The following command installs the Perspective Transformer Layer:
 ```
 ./prepare_data.sh
 ```
+* Disclaimer: Please cite the [ShapeNet paper](https://arxiv.org/pdf/1512.03012.pdf) as well.
 
 ## Pre-trained Models Downloading (single-class experiment)
 
