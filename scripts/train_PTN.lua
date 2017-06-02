@@ -106,16 +106,16 @@ end
 -- load encoder from RNN-16
 if opt.exp_list == 'singleclass' then
   opt.basemodel_name = string.format('%s_%s_nv%d_adam%d_bs%d_nz%d_wd%g_lbg%g_ks%d',
-    'rotatorRNN1_64', opt.exp_list, opt.nview, 2, 8, opt.nz, 
+    'arch_rotatorRNN', opt.exp_list, opt.nview, 2, 8, opt.nz, 
     opt.weight_decay, 10, 16)
   opt.basemodel_epoch = 20 
 --[[elseif opt.exp_list == 'multiclass' then
   opt.basemodel_name = string.format('%s_%s_nv%d_adam%d_bs%d_nz%d_wd%g_lbg%g_ks%d',
     'rotatorRNN1_64', opt.exp_list, opt.nview, 2, 8, opt.nz, 
     opt.weight_decay, 10, 16) 
-  opt.basemodel_epoch = 20
+  opt.basemodel_epoch = 20]]
   loader = torch.load(opt.checkpoint_dir .. opt.basemodel_name .. string.format('/net-epoch-%d.t7', opt.basemodel_epoch))
-  encoder = loader.encoder]]
+  encoder = loader.encoder
 end
 
 collectgarbage()
