@@ -85,13 +85,13 @@ if opt.exp_list == 'singleclass' then
     opt.basemodel_name = string.format('%s_%s_nv%d_adam%d_bs%d_nz%d_wd%g_lbg%g_ks%d',
       opt.arch_name, opt.exp_list, opt.nview, 2, 32, opt.nz, 
       opt.weight_decay, opt.lambda, 8)
-    opt.basemodel_epoch = 20
+    opt.basemodel_epoch = 40
     loader = torch.load(opt.checkpoint_dir .. opt.basemodel_name .. string.format('/net-epoch-%d.t7', opt.basemodel_epoch))     
   elseif opt.kstep == 16 then
     opt.basemodel_name = string.format('%s_%s_nv%d_adam%d_bs%d_nz%d_wd%g_lbg%g_ks%d',
       opt.arch_name, opt.exp_list, opt.nview, 2, 16, opt.nz, 
       opt.weight_decay, opt.lambda, 12)
-    opt.basemodel_epoch = 20
+    opt.basemodel_epoch = 40
     loader = torch.load(opt.checkpoint_dir .. opt.basemodel_name .. string.format('/net-epoch-%d.t7', opt.basemodel_epoch)) 
   end
 --[[elseif opt.exp_list == 'multiclass' then
