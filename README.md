@@ -67,6 +67,10 @@ Note that the pre-training could take a few days on a single TITAN X GPU.
 ./demo_train_cnn_vol_singleclass.sh
 ```
 
+## Third-party Implementation
+
+Besides our torch implementation, we recommend to see also the following third-party re-implementation:
+1. [TensorFlow Implementation](https://github.com/tensorflow/models/tree/master/ptn): This re-implementation was partly developed during my Google internship; If you find a bug, please file a bug and cc @xcyan. 
 
 ## Citation
 
