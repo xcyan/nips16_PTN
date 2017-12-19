@@ -67,6 +67,14 @@ Note that the pre-training could take a few days on a single TITAN X GPU.
 ./demo_train_cnn_vol_singleclass.sh
 ```
 
+## Using your own camera
+* In many cases, you want to implement your own camera matrix (e.g., intrinsic or extrinsic). 
+Please feel free to modify [this function](https://github.com/xcyan/nips16_PTN/blob/master/scripts/train_PTN.lua#L207).
+
+* Before start your own implementation, we recommand to go through basic camera geometry in [this computer vision textbook](http://szeliski.org/Book/drafts/SzeliskiBook_20100903_draft.pdf) written by Richard Szeliski (see Eq 2.59 at Page 53).
+
+* Note that in our voxel ray-tracing implementation, we used the inverse camera matrix. 
+
 ## Third-party Implementation
 
 Besides our torch implementation, we recommend to see also the following third-party re-implementation:
