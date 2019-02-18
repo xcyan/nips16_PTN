@@ -2,7 +2,7 @@
 
 This is the code for NIPS 2016 paper [Perspective Transformer Nets: Learning Single-View 3D Object Reconstruction without 3D Supervision](https://papers.nips.cc/paper/6206-perspective-transformer-nets-learning-single-view-3d-object-reconstruction-without-3d-supervision.pdf) by Xinchen Yan, Jimei Yang, Ersin Yumer, Yijie Guo and Honglak Lee
 
-<img src="https://umich.box.com/shared/static/e9atbh9mjt9mvm27i74lhsp0b9q97rxn.png" width="900px" height="300px"/>
+<img src="https://b191c0a7-a-62cb3a1a-s-sites.googlegroups.com/site/skywalkeryxc/perspective_transformer_nets/website_background.png" width="900px" height="300px"/>
 
 Please follow the instructions to run the code.
 
