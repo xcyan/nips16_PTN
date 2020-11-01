@@ -78,7 +78,7 @@ Please feel free to modify [this function](https://github.com/xcyan/nips16_PTN/b
 ## Third-party Implementation
 
 Besides our torch implementation, we recommend to see also the following third-party re-implementation:
-* [TensorFlow Implementation](https://github.com/tensorflow/models/tree/master/research/ptn): This re-implementation was developed during Xinchen's Google internship; If you find a bug, please file a bug including @xcyan. 
+* [TensorFlow Implementation](https://github.com/tensorflow/models/tree/archive/research/ptn): This re-implementation was developed during Xinchen's Google internship; If you find a bug, please file a bug including @xcyan. 
 
 ## Citation
 
